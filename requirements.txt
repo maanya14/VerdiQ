@@ -1,0 +1,14 @@
+langchain
+langchain-huggingface
+langchain-chroma
+langchain-community
+langchain-google-genai
+chromadb
+pypdf
+sentence-transformers
+fastapi 
+uvicorn
+crewai
+pydantic
+typing
+requests
