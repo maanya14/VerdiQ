@@ -2,30 +2,6 @@
 
 FastAPI backend (RAG + CrewAI) with a React + Tailwind frontend.
 
-## What changed in this pass
-
-The backend had several breaking issues that were fixed so it actually runs:
-
-- `app,py` → renamed to `app.py`.
-- `routes/risk.py`, `routes/clause.py`, `routes/agent.py` were empty (the app
-  would crash on import) — implemented all three.
-- `rag/W1/chatbot.py` was a CLI input-loop script with no `ask_chatbot`
-  function (which `routes/chat.py` already called) — refactored into a
-  proper function.
-- `rag/W2/clause_extractor.py` and `rag/W3/risk_analyzer.py` were one-off
-  scripts with hardcoded paths — refactored into `extract_clauses(pdf_path)`
-  and `analyze_clause(clause)` functions.
-- Broken relative imports fixed throughout `rag/W2`, `rag/W3`, `rag/W4`
-  (e.g. `from schemas import ...` → `from rag.W2.schemas import ...`) so the
-  package imports correctly regardless of the working directory.
-- `rag/W4/Crew.py` now exposes `run_legal_crew(question)` for the route to
-  call.
-- `requirements.txt` cleaned up (removed the nonexistent `crew` and
-  built-in `typing` packages; added `python-multipart`, `python-dotenv`,
-  `langchain-text-splitters`).
-- Added a `/health` endpoint and confirmed all five routes register
-  correctly via a mocked import test.
-
 
 ## Backend
 
