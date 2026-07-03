@@ -26,10 +26,6 @@ The backend had several breaking issues that were fixed so it actually runs:
 - Added a `/health` endpoint and confirmed all five routes register
   correctly via a mocked import test.
 
-⚠️ **Your `.env` file has a live Google API key in it.** Rotate that key in
-Google AI Studio / Cloud Console — it was sitting in plaintext in the zip
-you uploaded, and `.env` is now gitignored so a fresh key won't get
-committed by accident.
 
 ## Backend
 
@@ -63,8 +59,7 @@ npm run dev
 ```
 
 Runs at `http://localhost:5173` and talks to the backend at
-`http://localhost:8000` by default (see `.env.example` — copy to `.env` to
-change it).
+`http://localhost:8000` by default 
 
 Four tabs, one per backend feature: **General Counsel** (chat), **Clause
 Extraction** (PDF upload), **Risk Assessment** (single clause), and **Full
