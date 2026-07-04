@@ -25,7 +25,7 @@ def health():
     return {"status": "ok"}
 
 
-#app.include_router(chat_router)
-#app.include_router(risk_router)
-#app.include_router(clause_router)
-#app.include_router(agent_router)
+app.include_router(chat_router)
+app.include_router(risk_router)
+app.include_router(clause_router)
+app.include_router(agent_router)
