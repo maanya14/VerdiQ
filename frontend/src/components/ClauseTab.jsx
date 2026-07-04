@@ -96,12 +96,12 @@ export default function ClauseTab() {
           <dl className="divide-y divide-line">
             {Object.entries(clauses).map(([key, value]) => (
               <div key={key} className="py-3 first:pt-0 last:pb-0">
-                <dt className="font-sans text-xs font-semibold uppercase tracking-wide text-brand-black/50 mb-1">
+                <dt className="font-sans text-xs font-semibold uppercase tracking-wide text-brand-cream/50 mb-1">
                   {CLAUSE_LABELS[key] || key}
                 </dt>
-                <dd className="font-sans text-sm text-brand-black leading-relaxed whitespace-pre-wrap">
+                <dd className="font-sans text-sm text-brand-cream leading-relaxed whitespace-pre-wrap">
                   {value || (
-                    <span className="text-brand-black/35 italic">
+                    <span className="text-brand-cream/35 italic">
                       Not found in this document
                     </span>
                   )}

@@ -24,7 +24,7 @@ export default function App() {
             Indian Legal Reference &amp; Contract Analysis
           </p>
           <h1 className="font-serif text-3xl sm:text-4xl text-ink tracking-tight">
-            JurístiQ
+            VerdíQ
           </h1>
         </div>
         <TabNav active={active} onChange={setActive} />

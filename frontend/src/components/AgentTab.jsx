@@ -62,7 +62,7 @@ export default function AgentTab() {
       {result && (
         <Card>
           <SectionLabel>Final Report</SectionLabel>
-          <p className="font-sans text-[15px] leading-relaxed text-brand-black whitespace-pre-wrap">
+          <p className="font-sans text-[15px] leading-relaxed text-brand-cream whitespace-pre-wrap">
             {result}
           </p>
         </Card>

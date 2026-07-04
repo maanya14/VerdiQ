@@ -118,7 +118,7 @@ export default function RiskTab() {
           ) : (
             <div>
               <SectionLabel>Analysis</SectionLabel>
-              <p className="font-sans text-sm text-brand-black leading-relaxed whitespace-pre-wrap">
+              <p className="font-sans text-sm text-brand-cream leading-relaxed whitespace-pre-wrap">
                 {result.raw_response}
               </p>
             </div>
