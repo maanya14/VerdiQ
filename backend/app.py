@@ -9,8 +9,8 @@ from routes.agent import router as agent_router
 app = FastAPI(title="Legal AI Chatbot API")
 origins = [
     "http://localhost:5173",
-    "https://verdi-q.vercel.app/",
-    "https://verdi-q-maanya14s-projects.vercel.app/"
+    "https://verdi-q.vercel.app",
+    "https://verdi-q-maanya14s-projects.vercel.app"
 ]
 
 app.add_middleware(
