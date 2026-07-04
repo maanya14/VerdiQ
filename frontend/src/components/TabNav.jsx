@@ -19,14 +19,14 @@ export default function TabNav({ active, onChange }) {
             className={[
               "focus-ring group relative flex items-center gap-2 px-4 sm:px-5 py-3 rounded-t-lg border border-b-0 transition-colors",
               isActive
-                ? "bg-parchment border-line text-ink z-10 shadow-tab"
-                : "bg-ink/[0.03] border-transparent text-ink/50 hover:text-ink/80 hover:bg-ink/[0.05]",
+                ? "bg-brand-gold border-brand-gold text-brand-black shadow-md"
+                : "bg-transparent border-transparent text-foreground/70 hover:text-foreground hover:bg-white/5"
             ].join(" ")}
           >
             <span
               className={[
                 "font-mono text-[11px] tracking-wider",
-                isActive ? "text-burgundy" : "text-ink/30",
+                isActive ? "text-brand-black" : "text-brand-gold/70",
               ].join(" ")}
             >
               {tab.numeral}

@@ -61,7 +61,7 @@ export default function RiskTab() {
           onChange={(e) => setClause(e.target.value)}
           placeholder="e.g. Landlord may terminate tenancy without notice and remove tenant."
           rows={4}
-          className="focus-ring w-full border border-line rounded-md bg-white px-4 py-3 font-sans text-sm text-ink placeholder:text-ink/35 resize-none"
+          className="focus-ring w-full border border-line rounded-md bg-white px-4 py-3 font-sans text-sm text-brand-black placeholder:text-brand-black/40 resize-none"
         />
         <div className="mt-3">
           <PrimaryButton type="submit" disabled={loading || !clause.trim()}>
@@ -94,7 +94,7 @@ export default function RiskTab() {
               {result.explanation && (
                 <div>
                   <SectionLabel>Explanation</SectionLabel>
-                  <p className="font-sans text-sm text-ink leading-relaxed whitespace-pre-wrap">
+                  <p className="font-sans text-sm text-brand-black leading-relaxed whitespace-pre-wrap">
                     {result.explanation}
                   </p>
                 </div>
@@ -102,7 +102,7 @@ export default function RiskTab() {
               {result.legal_citation && (
                 <div>
                   <SectionLabel>Legal Citation</SectionLabel>
-                  <p className="font-mono text-sm text-ink/80">
+                  <p className="font-mono text-sm text-brand-black/80">
                     {result.legal_citation}
                   </p>
                 </div>
@@ -110,7 +110,7 @@ export default function RiskTab() {
               {!result.risk_level &&
                 !result.explanation &&
                 !result.legal_citation && (
-                  <pre className="font-mono text-xs text-ink/70 whitespace-pre-wrap">
+                  <pre className="font-mono text-xs text-brand-black/70 whitespace-pre-wrap">
                     {JSON.stringify(result, null, 2)}
                   </pre>
                 )}
@@ -118,7 +118,7 @@ export default function RiskTab() {
           ) : (
             <div>
               <SectionLabel>Analysis</SectionLabel>
-              <p className="font-sans text-sm text-ink leading-relaxed whitespace-pre-wrap">
+              <p className="font-sans text-sm text-brand-black leading-relaxed whitespace-pre-wrap">
                 {result.raw_response}
               </p>
             </div>

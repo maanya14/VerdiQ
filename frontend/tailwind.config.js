@@ -1,33 +1,94 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,jsx}"],
-  theme: {
+module.exports = {
+    darkMode: ['class'],
+    content: [
+        './src/**/*.{js,jsx,ts,tsx}',
+        './public/index.html'
+    ],
+    theme: {
     extend: {
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)'
+      },
       colors: {
-        paper: "#F7F6F2",
-        ink: "#1C1F26",
-        ledger: "#2A2E37",
-        burgundy: {
-          DEFAULT: "#7A2331",
-          dark: "#5C1A25",
-          light: "#9C3B4A",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
-        brass: {
-          DEFAULT: "#A98942",
-          light: "#C7A863",
+
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
         },
-        parchment: "#EFEBDD",
-        line: "#DEDACB",
+
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+
+        brand: {
+          black: "#070706",
+          cream: "#F2E7D7",
+          gold: "#93784B",
+          surface: "#151513",
+          border: "#2B2A28",
+        },
       },
-      fontFamily: {
-        serif: ["'Source Serif 4'", "Georgia", "serif"],
-        sans: ["'IBM Plex Sans'", "system-ui", "sans-serif"],
-        mono: ["'IBM Plex Mono'", "monospace"],
+      keyframes: {
+        'accordion-down': {
+          from: {
+            height: '0'
+          },
+          to: {
+            height: 'var(--radix-accordion-content-height)'
+          }
+        },
+        'accordion-up': {
+          from: {
+            height: 'var(--radix-accordion-content-height)'
+          },
+          to: {
+            height: '0'
+          }
+        }
       },
-      boxShadow: {
-        tab: "0 2px 0 0 rgba(0,0,0,0.04)",
-      },
-    },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out'
+      }
+    }
   },
-  plugins: [],
+  plugins: [
+  require("tailwindcss-animate"),
+  require("@tailwindcss/typography"),
+],
 };

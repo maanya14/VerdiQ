@@ -39,7 +39,10 @@ export default function App() {
       <footer className="px-6 sm:px-10 py-4">
         <p className="font-sans text-xs text-ink/40">
           Educational information only — not a substitute for advice from a
-          qualified lawyer.
+          qualified lawyer. 
+        </p>
+        <p className="font-sans text-ink/60">
+          Developed by Maanya Gupta
         </p>
       </footer>
     </div>

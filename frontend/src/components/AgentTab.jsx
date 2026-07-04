@@ -45,7 +45,7 @@ export default function AgentTab() {
           onChange={(e) => setQuestion(e.target.value)}
           placeholder="e.g. Review the risks in a standard residential lease termination clause."
           rows={3}
-          className="focus-ring w-full border border-line rounded-md bg-white px-4 py-3 font-sans text-sm text-ink placeholder:text-ink/35 resize-none"
+          className="focus-ring w-full border border-line rounded-md bg-white px-4 py-3 font-sans text-sm text-brand-black placeholder:text-brand-black/40 resize-none"
         />
         <div className="mt-3">
           <PrimaryButton type="submit" disabled={loading || !question.trim()}>
@@ -62,7 +62,7 @@ export default function AgentTab() {
       {result && (
         <Card>
           <SectionLabel>Final Report</SectionLabel>
-          <p className="font-sans text-[15px] leading-relaxed text-ink whitespace-pre-wrap">
+          <p className="font-sans text-[15px] leading-relaxed text-brand-black whitespace-pre-wrap">
             {result}
           </p>
         </Card>
