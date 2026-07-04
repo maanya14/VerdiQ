@@ -4,7 +4,7 @@ from pathlib import Path
 
 # Add W3 to path so we can import retriever
 #sys.path.insert(0, str(Path(__file__).parent.parent / "W3"))
-from rag.W3.retriever import retriever
+from rag.W3.retriever import get_retriever
 
 @tool("Legal Document Search")
 def legal_search(query: str) -> str:
@@ -13,7 +13,7 @@ def legal_search(query: str) -> str:
     the most relevant sections.
     """
 
-    docs = retriever.invoke(query)
+    docs = get_retriever().invoke(query)
 
     if not docs:
         return "No relevant legal information found."
