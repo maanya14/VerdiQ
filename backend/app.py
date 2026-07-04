@@ -7,18 +7,19 @@ from routes.clause import router as clause_router
 from routes.agent import router as agent_router
 
 app = FastAPI(title="Legal AI Chatbot API")
+origins = [
+    "http://localhost:5173",
+    "https://verdi-q.vercel.app/",
+    "https://verdi-q-maanya14s-projects.vercel.app/"
+]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "https://verdi-q.vercel.app/",
-    ],
-    allow_credentials=True,
+    allow_origins=origins,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 @app.get("/health")
 def health():
