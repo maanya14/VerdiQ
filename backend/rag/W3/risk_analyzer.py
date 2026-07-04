@@ -1,17 +1,23 @@
 import json
 import re
 
-from rag.W3.retriever import retriever
+from rag.W3.retriever import get_retriever
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import PromptTemplate
 
 from dotenv import load_dotenv
 load_dotenv()
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
-    temperature=0
-)
+_llm = None
+
+def get_llm():
+    global _llm
+    if _llm is None:
+        _llm = ChatGoogleGenerativeAI(
+            model="gemini-2.5-flash",
+            temperature=0
+        )
+    return _llm
 prompt = PromptTemplate(
     template="""
 You are a legal risk analyst.
@@ -34,7 +40,7 @@ Determine:
 
 def analyze_clause(clause):
 
-    docs = retriever.invoke(clause)
+    docs = get_retriever().invoke(clause)
 
     law_text = "\n".join(
         [doc.page_content for doc in docs]
@@ -45,7 +51,7 @@ def analyze_clause(clause):
         law=law_text
     )
 
-    result = llm.invoke(final_prompt)
+    result = get_llm().invoke(final_prompt)
     raw = result.content.strip()
 
     # The model is asked for JSON only, but sometimes wraps it in a

@@ -12,26 +12,30 @@ from rag.W4.task import (
     advisor_task
 )
 
-legal_crew = Crew(
-    agents=[
-        clause_agent,
-        risk_agent,
-        advisor_agent
-    ],
+_crew = None
 
-    tasks=[
-        clause_task,
-        risk_task,
-        advisor_task
-    ],
+def get_crew():
+    global _crew
 
-    process=Process.sequential,
+    if _crew is None:
+        _crew = Crew(
+            agents=[
+                clause_agent,
+                risk_agent,
+                advisor_agent
+            ],
+            tasks=[
+                clause_task,
+                risk_task,
+                advisor_task
+            ],
+            process=Process.sequential,
+            verbose=True
+        )
 
-    verbose=True
-)
-
+    return _crew
 
 def run_legal_crew(question: str) -> str:
     """Kick off the multi-agent legal analysis pipeline for a question."""
-    result = legal_crew.kickoff(inputs={"question": question})
+    result = get_crew().kickoff(inputs={"question": question})
     return str(result)
