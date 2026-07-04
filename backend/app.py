@@ -12,7 +12,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://YOUR-VERCEL.vercel.app",
+        "https://verdi-q.vercel.app/",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -25,7 +25,7 @@ def health():
     return {"status": "ok"}
 
 
-app.include_router(chat_router)
-app.include_router(risk_router)
-app.include_router(clause_router)
-app.include_router(agent_router)
+#app.include_router(chat_router)
+#app.include_router(risk_router)
+#app.include_router(clause_router)
+#app.include_router(agent_router)
