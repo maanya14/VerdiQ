@@ -20,20 +20,34 @@ def get_llm():
     return _llm
 prompt = PromptTemplate(
     template="""
-You are a legal risk analyst.
+You are a legal risk analyst reviewing Indian contracts.
 
 Clause:
 {clause}
 
-Relevant Law:
+Relevant Law (retrieved excerpts -- these may begin or end mid-sentence
+because they are fragments of a larger document; never copy them
+word-for-word):
 {law}
 
-Determine:
+Analyze the clause and respond with proper formatting, no markdown code
+fences, no commentary before or after it, in exactly this shape:
 
-1. Risk Level (Low/Medium/High)
-2. Explanation
-3. Legal Citation
 
+  "risk_level": "Low" | "Medium" | "High",
+  "explanation": "2-4 complete, well-formed sentences in your own words explaining the risk.",
+  "legal_citation": "The Act name and section number this relates to, written as a full clean reference (e.g. 'Section 108(m), Transfer of Property Act, 1882'), not a copied sentence fragment."
+
+
+Rules:
+- Write in full, grammatically complete sentences. Never end a sentence
+  mid-word or mid-clause.
+- Paraphrase and summarize the relevant law in your own words -- do not
+  quote the excerpts directly, since they are truncated at chunk
+  boundaries and quoting them verbatim will reproduce that truncation.
+- If the excerpts don't name a specific section clearly, give the most
+  relevant Act/topic you can identify instead of an incomplete citation.
+- Output must be valid, parseable JSON and nothing else.
 """,
     input_variables=["clause", "law"]
 )
@@ -42,8 +56,8 @@ def analyze_clause(clause):
 
     docs = get_retriever().invoke(clause)
 
-    law_text = "\n".join(
-        [doc.page_content for doc in docs]
+    law_text = "\n\n---\n\n".join(
+        [doc.page_content.strip() for doc in docs]
     )
 
     final_prompt = prompt.format(

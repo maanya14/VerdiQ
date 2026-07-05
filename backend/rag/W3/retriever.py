@@ -24,7 +24,7 @@ def get_retriever():
         )
 
         _retriever = _db.as_retriever(
-            search_kwargs={"k": 3}
+            search_kwargs={"k": 5}
         )
 
     return _retriever

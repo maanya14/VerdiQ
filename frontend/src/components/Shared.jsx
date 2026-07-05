@@ -1,3 +1,5 @@
+import ReactMarkdown from "react-markdown";
+
 export function Card({ children, className = "" }) {
   return (
     <div
@@ -88,6 +90,33 @@ export function LoadingSeal({ label }) {
         <span className="relative inline-flex rounded-full h-3 w-3 bg-primary" />
       </span>
       {label}
+    </div>
+  );
+}
+
+/**
+ * Renders LLM output as actual formatted text instead of raw markdown
+ * (so "## Heading" / "**bold**" / "_italic_" render as real headings,
+ * bold, and italics rather than showing the literal symbols).
+ */
+export function MarkdownBlock({ children, className = "" }) {
+  if (!children) return null;
+  return (
+    <div
+      className={`prose prose-invert prose-sm sm:prose-base max-w-none
+        prose-headings:font-serif prose-headings:text-foreground
+        prose-p:text-foreground prose-li:text-foreground
+        prose-strong:text-foreground prose-strong:font-semibold
+        prose-em:text-foreground
+        prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+        marker:text-primary
+        prose-code:text-foreground prose-code:before:content-none prose-code:after:content-none
+        prose-pre:bg-secondary
+        prose-hr:border-border
+        prose-blockquote:text-muted-foreground prose-blockquote:border-border
+        ${className}`}
+    >
+      <ReactMarkdown>{children}</ReactMarkdown>
     </div>
   );
 }

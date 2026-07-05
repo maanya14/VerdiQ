@@ -6,6 +6,7 @@ import {
   PrimaryButton,
   ErrorBanner,
   LoadingSeal,
+  MarkdownBlock,
 } from "./Shared.jsx";
 
 const CLAUSE_LABELS = {
@@ -47,8 +48,8 @@ export default function ClauseTab() {
   return (
     <div className="max-w-2xl">
       <SectionLabel>Upload a contract</SectionLabel>
-      <h2 className="font-serif text-2xl text-ink mb-1">Clause Extraction</h2>
-      <p className="text-ink/60 font-sans text-sm mb-6">
+      <h2 className="font-serif text-2xl text-foreground mb-1">Clause Extraction</h2>
+      <p className="text-muted-foreground font-sans text-sm mb-6">
         Pulls termination, payment, arbitration, confidentiality, and
         governing-law clauses from a contract PDF.
       </p>
@@ -56,7 +57,7 @@ export default function ClauseTab() {
       <form onSubmit={handleSubmit} className="mb-6">
         <div
           onClick={() => inputRef.current?.click()}
-          className="focus-ring cursor-pointer border border-dashed border-line rounded-md bg-white px-6 py-8 text-center hover:border-brass transition-colors"
+          className="focus-ring cursor-pointer border border-dashed border-border rounded-md bg-white px-6 py-8 text-center hover:border-primary transition-colors"
         >
           <input
             ref={inputRef}
@@ -70,7 +71,7 @@ export default function ClauseTab() {
               <span className="font-medium text-brand-black">{file.name}</span>
             ) : (
               <>
-                <span className="text-burgundy font-medium">
+                <span className="text-primary font-medium">
                   Choose a PDF
                 </span>{" "}
                 or drop it here
@@ -93,15 +94,17 @@ export default function ClauseTab() {
       {clauses && (
         <Card>
           <SectionLabel>Extracted Clauses</SectionLabel>
-          <dl className="divide-y divide-line">
+          <dl className="divide-y divide-border">
             {Object.entries(clauses).map(([key, value]) => (
               <div key={key} className="py-3 first:pt-0 last:pb-0">
-                <dt className="font-sans text-xs font-semibold uppercase tracking-wide text-brand-cream/50 mb-1">
+                <dt className="font-sans text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">
                   {CLAUSE_LABELS[key] || key}
                 </dt>
-                <dd className="font-sans text-sm text-brand-cream leading-relaxed whitespace-pre-wrap">
-                  {value || (
-                    <span className="text-brand-cream/35 italic">
+                <dd>
+                  {value ? (
+                    <MarkdownBlock>{value}</MarkdownBlock>
+                  ) : (
+                    <span className="font-sans text-sm text-muted-foreground italic">
                       Not found in this document
                     </span>
                   )}

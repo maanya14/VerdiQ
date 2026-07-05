@@ -6,6 +6,7 @@ import {
   PrimaryButton,
   ErrorBanner,
   LoadingSeal,
+  MarkdownBlock,
 } from "./Shared.jsx";
 
 export default function AgentTab() {
@@ -33,8 +34,8 @@ export default function AgentTab() {
   return (
     <div className="max-w-2xl">
       <SectionLabel>Full case review</SectionLabel>
-      <h2 className="font-serif text-2xl text-ink mb-1">Full Case Review</h2>
-      <p className="text-ink/60 font-sans text-sm mb-6">
+      <h2 className="font-serif text-2xl text-foreground mb-1">Full Case Review</h2>
+      <p className="text-muted-foreground font-sans text-sm mb-6">
         Runs the clause, risk, and advisory agents in sequence for a complete
         report. Slower than the other tabs — expect it to take a while.
       </p>
@@ -45,7 +46,7 @@ export default function AgentTab() {
           onChange={(e) => setQuestion(e.target.value)}
           placeholder="e.g. Review the risks in a standard residential lease termination clause."
           rows={3}
-          className="focus-ring w-full border border-line rounded-md bg-white px-4 py-3 font-sans text-sm text-brand-black placeholder:text-brand-black/40 resize-none"
+          className="focus-ring w-full border border-border rounded-md bg-white px-4 py-3 font-sans text-sm text-brand-black placeholder:text-brand-black/40 resize-none"
         />
         <div className="mt-3">
           <PrimaryButton type="submit" disabled={loading || !question.trim()}>
@@ -62,9 +63,7 @@ export default function AgentTab() {
       {result && (
         <Card>
           <SectionLabel>Final Report</SectionLabel>
-          <p className="font-sans text-[15px] leading-relaxed text-brand-cream whitespace-pre-wrap">
-            {result}
-          </p>
+          <MarkdownBlock>{result}</MarkdownBlock>
         </Card>
       )}
     </div>

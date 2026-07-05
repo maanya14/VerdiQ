@@ -6,17 +6,18 @@ import {
   PrimaryButton,
   ErrorBanner,
   LoadingSeal,
+  MarkdownBlock,
 } from "./Shared.jsx";
 
 const RISK_COLORS = {
   low: "bg-emerald-50 text-emerald-700 border-emerald-200",
   medium: "bg-amber-50 text-amber-700 border-amber-200",
-  high: "bg-burgundy/[0.08] text-burgundy-dark border-burgundy/30",
+  high: "bg-red-950/40 text-red-300 border-red-900/50",
 };
 
 function riskBadgeClass(level) {
   const key = (level || "").toString().toLowerCase();
-  return RISK_COLORS[key] || "bg-ink/5 text-ink/60 border-line";
+  return RISK_COLORS[key] || "bg-muted text-muted-foreground border-border";
 }
 
 export default function RiskTab() {
@@ -49,8 +50,8 @@ export default function RiskTab() {
   return (
     <div className="max-w-2xl">
       <SectionLabel>Paste a clause</SectionLabel>
-      <h2 className="font-serif text-2xl text-ink mb-1">Risk Assessment</h2>
-      <p className="text-ink/60 font-sans text-sm mb-6">
+      <h2 className="font-serif text-2xl text-foreground mb-1">Risk Assessment</h2>
+      <p className="text-muted-foreground font-sans text-sm mb-6">
         Weighs a single clause against the indexed statute library and flags
         its risk level.
       </p>
@@ -61,7 +62,7 @@ export default function RiskTab() {
           onChange={(e) => setClause(e.target.value)}
           placeholder="e.g. Landlord may terminate tenancy without notice and remove tenant."
           rows={4}
-          className="focus-ring w-full border border-line rounded-md bg-white px-4 py-3 font-sans text-sm text-brand-black placeholder:text-brand-black/40 resize-none"
+          className="focus-ring w-full border border-border rounded-md bg-white px-4 py-3 font-sans text-sm text-brand-black placeholder:text-brand-black/40 resize-none"
         />
         <div className="mt-3">
           <PrimaryButton type="submit" disabled={loading || !clause.trim()}>
@@ -94,15 +95,13 @@ export default function RiskTab() {
               {result.explanation && (
                 <div>
                   <SectionLabel>Explanation</SectionLabel>
-                  <p className="font-sans text-sm text-brand-black leading-relaxed whitespace-pre-wrap">
-                    {result.explanation}
-                  </p>
+                  <MarkdownBlock>{result.explanation}</MarkdownBlock>
                 </div>
               )}
               {result.legal_citation && (
                 <div>
                   <SectionLabel>Legal Citation</SectionLabel>
-                  <p className="font-mono text-sm text-brand-black/80">
+                  <p className="font-mono text-sm text-foreground/80">
                     {result.legal_citation}
                   </p>
                 </div>
@@ -110,7 +109,7 @@ export default function RiskTab() {
               {!result.risk_level &&
                 !result.explanation &&
                 !result.legal_citation && (
-                  <pre className="font-mono text-xs text-brand-black/70 whitespace-pre-wrap">
+                  <pre className="font-mono text-xs text-foreground/70 whitespace-pre-wrap">
                     {JSON.stringify(result, null, 2)}
                   </pre>
                 )}
@@ -118,9 +117,7 @@ export default function RiskTab() {
           ) : (
             <div>
               <SectionLabel>Analysis</SectionLabel>
-              <p className="font-sans text-sm text-brand-cream leading-relaxed whitespace-pre-wrap">
-                {result.raw_response}
-              </p>
+              <MarkdownBlock>{result.raw_response}</MarkdownBlock>
             </div>
           )}
         </Card>
