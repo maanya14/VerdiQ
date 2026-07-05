@@ -79,9 +79,9 @@ export default function RiskTab() {
       {result && (
         <Card>
           {isStructured ? (
-            <div className="space-y-4">
+            <div className="divide-y divide-border">
               {result.risk_level && (
-                <div>
+                <div className="pb-4">
                   <SectionLabel>Risk Level</SectionLabel>
                   <span
                     className={`inline-block border text-xs font-semibold uppercase tracking-wide px-3 py-1 rounded-full font-sans ${riskBadgeClass(
@@ -93,13 +93,13 @@ export default function RiskTab() {
                 </div>
               )}
               {result.explanation && (
-                <div>
+                <div className="py-4">
                   <SectionLabel>Explanation</SectionLabel>
                   <MarkdownBlock>{result.explanation}</MarkdownBlock>
                 </div>
               )}
               {result.legal_citation && (
-                <div>
+                <div className="pt-4">
                   <SectionLabel>Legal Citation</SectionLabel>
                   <p className="font-mono text-sm text-foreground/80">
                     {result.legal_citation}

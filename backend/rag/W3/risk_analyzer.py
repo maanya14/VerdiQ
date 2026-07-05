@@ -30,14 +30,14 @@ because they are fragments of a larger document; never copy them
 word-for-word):
 {law}
 
-Analyze the clause and respond with proper formatting, no markdown code
+Analyze the clause and respond with ONLY a JSON object, no markdown code
 fences, no commentary before or after it, in exactly this shape:
 
-
+{{
   "risk_level": "Low" | "Medium" | "High",
   "explanation": "2-4 complete, well-formed sentences in your own words explaining the risk.",
   "legal_citation": "The Act name and section number this relates to, written as a full clean reference (e.g. 'Section 108(m), Transfer of Property Act, 1882'), not a copied sentence fragment."
-
+}}
 
 Rules:
 - Write in full, grammatically complete sentences. Never end a sentence
